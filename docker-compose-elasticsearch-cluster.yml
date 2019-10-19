@@ -1,0 +1,70 @@
+version: '2.2'
+services:
+  cerebro:
+    build: .
+    container_name: cerebro_elasticsearch
+    ports:
+      - '9000:9000'
+    networks:
+      - esnet
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - discovery.seed_hosts=elasticsearch01
+      - cluster.initial_master_nodes=elasticsearch,elasticsearch01
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+
+  elasticsearch01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    container_name: elasticsearch01
+    environment:
+      - node.name=elasticsearch01
+      - discovery.seed_hosts=elasticsearch
+      - cluster.initial_master_nodes=elasticsearch,elasticsearch01
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata02:/usr/share/elasticsearch/data
+    networks:
+      - esnet
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.2.0
+    container_name: kibana
+    environment:
+      ELASTICSEARCH_HOST: http://elasticsearch:9200
+    ports:
+      - '5601:5601'
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
+
+volumes:
+  esdata01:
+    driver: local
+  esdata02:
+    driver: local
+
+networks:
+  esnet:
