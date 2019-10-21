@@ -9,4 +9,4 @@ Contém os seguintes arquivos:
 - Projeto do Jupyter para obter twets e enviar para o Kafka;
 - Projeto para consumir dados do Kafka.
 
-Slides da apresentação no evento: 
+Slides da apresentação no evento: https://bit.ly/2VZjpDL
