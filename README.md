@@ -12,4 +12,4 @@ Contém os seguintes arquivos:
 
 Slides da apresentação no evento GDG DevFest: https://bit.ly/2VZjpDL
 
-Slides da aprensetação no TDC BH Online: https://bit.ly/3aH9JDX
+Slides da apresentação no TDC BH Online: https://bit.ly/3aH9JDX
