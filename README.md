@@ -11,4 +11,5 @@ Contém os seguintes arquivos:
 - Projeto para consumir dados do Kafka com Pyspark.
 
 Slides da apresentação no evento GDG DevFest: https://bit.ly/2VZjpDL
+
 Slides da aprensetação no TDC BH Online: https://bit.ly/3aH9JDX
