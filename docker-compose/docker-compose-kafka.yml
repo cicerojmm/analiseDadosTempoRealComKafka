@@ -1,5 +1,4 @@
 version: '2.1'
-
 services:
   zookeeper:
     image: zookeeper:3.4.9
@@ -77,3 +76,15 @@ services:
       PROXY: "true"
     depends_on:
       - kafka-connect
+
+  kafka-manager:
+    image: sheepkiller/kafka-manager:latest
+    ports:
+      - "9000:9000"
+    links:
+      - zookeeper
+      - kafka
+    environment:
+      ZK_HOSTS: zookeeper:2181
+      APPLICATION_SECRET: letmein
+      KM_ARGS: -Djava.net.preferIPv4Stack=true

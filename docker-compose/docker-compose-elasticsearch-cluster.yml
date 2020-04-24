@@ -1,13 +1,5 @@
 version: '2.2'
 services:
-  cerebro:
-    build: .
-    container_name: cerebro_elasticsearch
-    ports:
-      - '9000:9000'
-    networks:
-      - esnet
-
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
     container_name: elasticsearch
