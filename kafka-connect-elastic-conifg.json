@@ -1,3 +1,4 @@
+## Utilize esse JSON para configurar pelo Kafka Connector UI
 {
   "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
   "type.name": "kafka-connect",
@@ -11,4 +12,23 @@
   "value.converter": "org.apache.kafka.connect.json.JsonConverter",
   "key.converter": "org.apache.kafka.connect.storage.StringConverter",
   "schema.ignore": "true"
+}
+
+## Utilize esse JSON para configurar pelo Kafka Connector API
+## A requisição é um POST no path /connectors
+{
+	"name": "elasticsearch-sink-kafka",
+	"config": {
+		"connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+		"type.name": "kafka-connect",
+		"key.converter.schemas.enable": "false",
+		"tasks.max": "1",
+		"topics": "dados-tweets",
+		"value.converter.schemas.enable": "false",
+		"key.ignore": "true",
+		"connection.url": " http://10.158.0.5:9200",
+		"value.converter": "org.apache.kafka.connect.json.JsonConverter",
+		"key.converter": "org.apache.kafka.connect.storage.StringConverter",
+		"schema.ignore": "true"
+	}
 }
